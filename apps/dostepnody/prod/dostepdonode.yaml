@@ -1,0 +1,126 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: debug
+  labels:
+    pod-security.kubernetes.io/enforce: privileged
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-shell-tw1
+  namespace: debug
+spec:
+  nodeName: talos-w-1
+  # W 2026 upewnij się, że Kyverno nie nadpisuje tego pola (ConfigMap Exception)
+  hostPID: true
+  hostNetwork: true
+  hostIPC: true
+  containers:
+  - name: node-shell
+    image: alpine
+    stdin: true
+    tty: true
+    securityContext:
+      privileged: true
+    command: ["/bin/sh"]
+    args: ["-c", "sleep infinity"]
+    volumeMounts:
+    - name: root-volume
+      mountPath: /host
+  volumes:
+  - name: root-volume
+    hostPath:
+      path: /
+      type: Directory
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-shell-tw2
+  namespace: debug
+spec:
+  nodeName: talos-w-2
+  # W 2026 upewnij się, że Kyverno nie nadpisuje tego pola (ConfigMap Exception)
+  hostPID: true
+  hostNetwork: true
+  hostIPC: true
+  containers:
+  - name: node-shell
+    image: alpine
+    stdin: true
+    tty: true
+    securityContext:
+      privileged: true
+    command: ["/bin/sh"]
+    args: ["-c", "sleep infinity"]
+    volumeMounts:
+    - name: root-volume
+      mountPath: /host
+  volumes:
+  - name: root-volume
+    hostPath:
+      path: /
+      type: Directory
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-shell-tw3
+  namespace: debug
+spec:
+  nodeName: talos-w-3
+  # W 2026 upewnij się, że Kyverno nie nadpisuje tego pola (ConfigMap Exception)
+  hostPID: true
+  hostNetwork: true
+  hostIPC: true
+  containers:
+  - name: node-shell
+    image: alpine
+    stdin: true
+    tty: true
+    securityContext:
+      privileged: true
+    command: ["/bin/sh"]
+    args: ["-c", "sleep infinity"]
+    volumeMounts:
+    - name: root-volume
+      mountPath: /host
+  volumes:
+  - name: root-volume
+    hostPath:
+      path: /
+      type: Directory
+  restartPolicy: Never
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: node-shell-tw4
+  namespace: debug
+spec:
+  nodeName: talos-w-4
+  # W 2026 upewnij się, że Kyverno nie nadpisuje tego pola (ConfigMap Exception)
+  hostPID: true
+  hostNetwork: true
+  hostIPC: true
+  containers:
+  - name: node-shell
+    image: alpine
+    stdin: true
+    tty: true
+    securityContext:
+      privileged: true
+    command: ["/bin/sh"]
+    args: ["-c", "sleep infinity"]
+    volumeMounts:
+    - name: root-volume
+      mountPath: /host
+  volumes:
+  - name: root-volume
+    hostPath:
+      path: /
+      type: Directory
+  restartPolicy: Never
