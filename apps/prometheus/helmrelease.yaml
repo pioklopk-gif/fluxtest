@@ -36,7 +36,7 @@ spec:
               accessModes: ["ReadWriteOnce"]
               resources:
                 requests:
-                  storage: 6Gi
+                  storage: 4Gi
           podMonitorNamespaceSelector: {}
           podMonitorSelector:
            matchLabels:
